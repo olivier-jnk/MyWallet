@@ -1,0 +1,84 @@
+let argent = 0;
+let compte = 0;
+let numero = 0;
+
+function createAccount (){
+    argent = prompt("Entrez l'argent que vous possédez sur ce compte")
+    compte = prompt("Quel nom souhaitez vous donner à ce compte ?")
+    numero = numero + 1
+    
+    const div = document.getElementById('accounts')
+    const account = document.createElement('div') // Push la div dans accounts et tout le reste dans la div account
+    account.id = 'account' + numero;
+    div.appendChild(account)
+
+    const accountget = document.getElementById('account' + numero)
+    console.log(accountget)
+
+    
+
+    const showMoney2 = document.createElement('p')
+    showMoney2.textContent = (argent + ' euros')
+    showMoney2.id = 'laSomme'
+    const h1 = document.createTextNode(compte)
+
+    const buttonAdd = document.createElement('button')
+    buttonAdd.id = 'addMoney';
+    buttonAdd.textContent = ("Ajouter")
+    buttonAdd.addEventListener('click', function() {
+        ajouterArgent();
+    });
+
+    const buttonRetirer = document.createElement('button')
+    buttonRetirer.id = 'retirerMoney';
+    buttonRetirer.textContent = ("Retirer de l'argent")
+    buttonRetirer.addEventListener('click', function() {
+        retirerArgent();
+    });
+
+    accountget.appendChild(h1)
+    accountget.appendChild(showMoney2)
+
+    const boutonsbloc = document.createElement('div')
+    boutonsbloc.id = 'buttonsthediv' + numero
+    accountget.appendChild(boutonsbloc)
+    const boutonsBlocDiv = document.getElementById('buttonsthediv' + numero)
+
+    boutonsBlocDiv.appendChild(buttonAdd)
+    boutonsBlocDiv.appendChild(buttonRetirer)
+}
+
+const boutonadd = document.getElementById('addMoney')
+const boutonsupp = document.getElementById('retirerMoney')
+
+// En fonction du compte faire le transfert vers le bon.
+function ajouterArgent (){
+    console.log(argent)
+    console.log('fonction d ajout d argent en cours')
+    somme = prompt('entrez la somme à ajouter')
+    if (!isNaN(somme)) {
+        argent = parseInt(argent) + parseInt(somme)
+        document.getElementById('laSomme').innerHTML = argent + ' euros';
+    } else {
+        alert('Veuillez entrez un nombre valide')
+    }
+    
+    console.log(argent)
+}
+function retirerArgent (){
+    soustraction = prompt('entrez la somme à soustraire')
+    if (!isNaN(soustraction)) {
+        argent = parseInt(argent) - parseInt(soustraction)
+        document.getElementById('laSomme').innerHTML = argent + ' euros';
+    } else {
+        alert('Veuillez entrez un nombre valide')
+    }
+}
+
+
+
+// ajout du fonctionnement du ajout et retrait.
+// Transfert d'argent entre compte 
+// Et creation de compte mieux goupillée
+// Meilleur choix des noms de classes, id, fonctions. plus logiques/cohérent.
+// Faire en sorte que boutons soient spécifiques au compte auquel ils sont affiliés.
