@@ -111,3 +111,4 @@ function retirerArgent (){
 // Plutot pour les differentes sommes associés a differents comptes utiliser des objets et tableaux. Surement beaucoup mieux.
 
 // quand soustraction d'argent avec champ vide et confirmation la valeur passe a NAN. bien set les conditions pour eviter ca.
+// Problemes possibles si valeur (argent) rentrées avec des espace. exemples 5 000 au lieu de 5000.
