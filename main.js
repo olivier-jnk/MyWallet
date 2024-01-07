@@ -2,10 +2,16 @@ let argent = 0;
 let compte = 0;
 let numero = 0;
 
+const userAccounts = new Object();
+console.log(userAccounts)
+
 function createAccount (){
+
     argent = prompt("Entrez l'argent que vous possédez sur ce compte")
     compte = prompt("Quel nom souhaitez vous donner à ce compte ?")
     numero = numero + 1
+    argentaccount = argent + numero
+    console.log(argentaccount)
     
     const div = document.getElementById('accounts')
     const account = document.createElement('div') // Push la div dans accounts et tout le reste dans la div account
@@ -20,23 +26,35 @@ function createAccount (){
     const showMoney2 = document.createElement('p')
     showMoney2.textContent = (argent + ' euros')
     showMoney2.id = 'laSomme'
-    const h1 = document.createTextNode(compte)
+    const name = document.createElement('h3')
+    name.textContent = (compte)
+    name.id = 'accountName'
+    // const h1 = document.createTextNode(compte)
 
     const buttonAdd = document.createElement('button')
     buttonAdd.id = 'addMoney';
+    buttonAdd.className = numero;
     buttonAdd.textContent = ("Ajouter")
     buttonAdd.addEventListener('click', function() {
+        var clickedButtonAdd = document.getElementById('addMoney')
+        // var accountNumero = clickedButtonAdd.className
+
+        var accountNumero = event.target.className
+        console.log(accountNumero)
+        console.log("AGGGGG")
+
         ajouterArgent();
     });
 
     const buttonRetirer = document.createElement('button')
     buttonRetirer.id = 'retirerMoney';
+    buttonRetirer.className = numero;
     buttonRetirer.textContent = ("Retirer de l'argent")
     buttonRetirer.addEventListener('click', function() {
         retirerArgent();
     });
 
-    accountget.appendChild(h1)
+    accountget.appendChild(name)
     accountget.appendChild(showMoney2)
 
     const boutonsbloc = document.createElement('div')
@@ -53,6 +71,7 @@ const boutonsupp = document.getElementById('retirerMoney')
 
 // En fonction du compte faire le transfert vers le bon.
 function ajouterArgent (){
+    let num = accountNumero
     console.log(argent)
     console.log('fonction d ajout d argent en cours')
     somme = prompt('entrez la somme à ajouter')
@@ -82,3 +101,7 @@ function retirerArgent (){
 // Et creation de compte mieux goupillée
 // Meilleur choix des noms de classes, id, fonctions. plus logiques/cohérent.
 // Faire en sorte que boutons soient spécifiques au compte auquel ils sont affiliés.
+//Stocker toutes les données avec local storage
+// Plutot pour les differentes sommes associés a differents comptes utiliser des objets et tableaux. Surement beaucoup mieux.
+
+// quand soustraction d'argent avec champ vide et confirmation la valeur passe a NAN. bien set les conditions pour eviter ca.
