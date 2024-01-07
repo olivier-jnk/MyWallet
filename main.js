@@ -1,17 +1,19 @@
 let argent = 0;
 let compte = 0;
 let numero = 0;
+let aNum = 0;
 
-const userAccounts = new Object();
-console.log(userAccounts)
+// const userAccounts = {};
+// console.log(userAccounts)
 
 function createAccount (){
 
     argent = prompt("Entrez l'argent que vous possédez sur ce compte")
     compte = prompt("Quel nom souhaitez vous donner à ce compte ?")
     numero = numero + 1
-    argentaccount = argent + numero
-    console.log(argentaccount)
+    // argentaccount(numero) = argent
+    // console.log(argentaccount)
+
     
     const div = document.getElementById('accounts')
     const account = document.createElement('div') // Push la div dans accounts et tout le reste dans la div account
@@ -25,7 +27,7 @@ function createAccount (){
 
     const showMoney2 = document.createElement('p')
     showMoney2.textContent = (argent + ' euros')
-    showMoney2.id = 'laSomme'
+    showMoney2.id = 'laSomme' + numero
     const name = document.createElement('h3')
     name.textContent = (compte)
     name.id = 'accountName'
@@ -40,6 +42,9 @@ function createAccount (){
         // var accountNumero = clickedButtonAdd.className
 
         var accountNumero = event.target.className
+        aNum = parseInt(accountNumero)
+        console.log(aNum + 'AccountNumero')
+        
         console.log(accountNumero)
         console.log("AGGGGG")
 
@@ -51,6 +56,8 @@ function createAccount (){
     buttonRetirer.className = numero;
     buttonRetirer.textContent = ("Retirer de l'argent")
     buttonRetirer.addEventListener('click', function() {
+        var accountNumero = event.target.className
+        aNum = parseInt(accountNumero)
         retirerArgent();
     });
 
@@ -71,13 +78,12 @@ const boutonsupp = document.getElementById('retirerMoney')
 
 // En fonction du compte faire le transfert vers le bon.
 function ajouterArgent (){
-    let num = accountNumero
     console.log(argent)
     console.log('fonction d ajout d argent en cours')
     somme = prompt('entrez la somme à ajouter')
     if (!isNaN(somme)) {
         argent = parseInt(argent) + parseInt(somme)
-        document.getElementById('laSomme').innerHTML = argent + ' euros';
+        document.getElementById('laSomme' + aNum).innerHTML = argent + ' euros';
     } else {
         alert('Veuillez entrez un nombre valide')
     }
@@ -88,7 +94,7 @@ function retirerArgent (){
     soustraction = prompt('entrez la somme à soustraire')
     if (!isNaN(soustraction)) {
         argent = parseInt(argent) - parseInt(soustraction)
-        document.getElementById('laSomme').innerHTML = argent + ' euros';
+        document.getElementById('laSomme' + aNum).innerHTML = argent + ' euros';
     } else {
         alert('Veuillez entrez un nombre valide')
     }
