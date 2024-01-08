@@ -102,13 +102,15 @@ function retirerArgent (){
 
 
 
-// ajout du fonctionnement du ajout et retrait.
-// Transfert d'argent entre compte 
+// ajout du fonctionnement du ajout et retrait. x
+// Transfert d'argent entre compte  
 // Et creation de compte mieux goupillée
 // Meilleur choix des noms de classes, id, fonctions. plus logiques/cohérent.
 // Faire en sorte que boutons soient spécifiques au compte auquel ils sont affiliés.
 //Stocker toutes les données avec local storage
 // Plutot pour les differentes sommes associés a differents comptes utiliser des objets et tableaux. Surement beaucoup mieux.
+// Ajouter raison d'ajout d'argent et de retrait. Faire apparaitre un historique déroulable pour afficher entrées et sorties avec descriptions.
 
 // quand soustraction d'argent avec champ vide et confirmation la valeur passe a NAN. bien set les conditions pour eviter ca.
 // Problemes possibles si valeur (argent) rentrées avec des espace. exemples 5 000 au lieu de 5000.
+// Si creation de compte sans entrer de valeurs, compte créer mais sans rien. Peaufiner les conditions.
