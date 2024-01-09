@@ -6,8 +6,29 @@ let raisonAjout = 0;
 let raisonRetrait = 0;
 let somme = 0;
 
+const storedData = JSON.parse(localStorage.getItem('userData'));
+
+if (storedData) {
+  test = storedData.test;
+  for(i = 1; i > numero; i++){
+
+
+  }
+} else {
+  // Aucune donnée dans le localStorage.
+  test = 0;
+}
+
+function deTest (){
+    test = test +1;
+    console.log(test)
+    localStorage.setItem('userData', JSON.stringify({ ...storedData, test }));
+}
+
+
 // const userAccounts = {};
 // console.log(userAccounts)
+
 
 function createAccount (){
 
@@ -18,7 +39,7 @@ function createAccount (){
     // console.log(argentaccount)
     console.log(argent + 'valeur de argent')
 
-    if(argent !== null && argent !== 0 && argent <= 1){
+    if(argent !== null && argent !== 0){
 
         const div = document.getElementById('accounts')
         const account = document.createElement('div') // Push la div dans accounts et tout le reste dans la div account
@@ -176,3 +197,12 @@ function retirerArgent (){
 //Si valeur négative également.
 // Si valeur null, nan ou 0 empechement. mais si utilisateur entre sans sans aucune valeur ca fonctionne. si la valeur est du texte aussi.
 //Mauvais ordre d'affichage de l'historique
+
+//Possibilité de suppression de compte
+
+// voir le fonctionnement des objets, surement la solution pour stocker chq compte avec ses valeurs (titre, argent, historique...) et faciliter
+//grandement l'arrivée de nouvelles fonctionnalités, notamment celle du localStorage, et aussi, favoriser un code propre.
+
+//initialisation des comptes a chaque lancement.
+// Probleme, la plupart des valeurs ne sont pas reelements stockés, elle sont ajouter dans le html puis écrasées par les nouvelles.
+//Voir les objets c'est essentiel.
