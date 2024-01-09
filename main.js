@@ -4,6 +4,7 @@ let numero = 0;
 let aNum = 0;
 let raisonAjout = 0;
 let raisonRetrait = 0;
+let somme = 0;
 
 // const userAccounts = {};
 // console.log(userAccounts)
@@ -63,13 +64,20 @@ function createAccount (){
         retirerArgent();
     });
 
-    raisonUl = document.createElement('ul')
+    raisonUl = document.createElement('details')
     raisonUl.id = 'raisons' + numero;
+    raisonUl.className = 'Suivi'
 
 
     accountget.appendChild(name)
     accountget.appendChild(showMoney2)
     accountget.appendChild(raisonUl)
+
+    getDetails = document.getElementById("raisons" + numero)
+    createSummary = document.createElement('summary')
+    createSummary.textContent = 'Historique';
+    getDetails.appendChild(createSummary)
+
 
     const boutonsbloc = document.createElement('div')
     boutonsbloc.id = 'buttonsthediv' + numero
@@ -90,7 +98,7 @@ function ajouterArgent (){
     console.log('fonction d ajout d argent en cours')
     somme = prompt('entrez la somme à ajouter')
     raison = prompt('Quel est la raison')
-    if (!isNaN(somme)) {
+    if (!isNaN(somme) || somme !== null) {
         raisonAjout = raisonAjout + 1;
         argent = parseInt(argent) + parseInt(somme)
         document.getElementById('laSomme' + aNum).innerHTML = argent + ' euros';
@@ -99,6 +107,7 @@ function ajouterArgent (){
         console.log(aNum)
         let raisonLi = document.createElement('li')
         raisonLi.id = "raisonAjout" + aNum + 0 + raisonAjout;
+        raisonLi.className = "valeurSuivi"
 
         raisonsGet.appendChild(raisonLi)
         // raisonLi.textContent = (somme + raison) 
@@ -128,16 +137,17 @@ function retirerArgent (){
         console.log(aNum)
         let raisonLi = document.createElement('li')
         raisonLi.id = "raisonRetrait" + aNum + 0 + raisonRetrait;
+        raisonLi.className = "valeurSuivi"
 
         raisonsGet.appendChild(raisonLi)
         liGet = document.getElementById("raisonRetrait" + aNum + 0 + raisonRetrait)
-        txtAjout = document.createElement('p');
-        txtAjout.textContent = ('-' + soustraction + ':');
-        raisonAjout = document.createElement('p');
-        raisonAjout.textContent = (raison)
+        txtRetrait = document.createElement('p');
+        txtRetrait.textContent = ('-' + soustraction + ':');
+        raisonRetrait = document.createElement('p');
+        raisonRetrait.textContent = (raison)
 
-        liGet.appendChild(txtAjout)
-        liGet.appendChild(raisonAjout)
+        liGet.appendChild(txtRetrait)
+        liGet.appendChild(raisonRetrait)
     } else {
         alert('Veuillez entrez un nombre valide')
     }
@@ -157,3 +167,6 @@ function retirerArgent (){
 // quand soustraction d'argent avec champ vide et confirmation la valeur passe a NAN. bien set les conditions pour eviter ca.
 // Problemes possibles si valeur (argent) rentrées avec des espace. exemples 5 000 au lieu de 5000.
 // Si creation de compte sans entrer de valeurs, compte créer mais sans rien. Peaufiner les conditions.
+// dans le processus de creation nom du compte avant valeur. Plus tard possible de modifier les valeurs par un click sur celle-ci.
+
+// Empecher la creation d'un compte, ajout d'une somme et retrait sans valeur entré ou invalide (texte, chiffre avec virgules ou espaces).

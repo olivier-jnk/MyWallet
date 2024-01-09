@@ -19,3 +19,14 @@ body{
 
     margin-bottom: 10%;
 }
+
+.Suivi{
+    display: flex;
+    flex-direction: column-reverse;
+    gap: 10px;
+}
+
+.valeurSuivi{
+    display: flex;
+    gap: 5%;
+}
