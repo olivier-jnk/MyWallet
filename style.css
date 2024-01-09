@@ -30,3 +30,10 @@ body{
     display: flex;
     gap: 5%;
 }
+
+.account{
+    padding: 5%;
+    background-color: #b2b2b2;
+    margin: 5%;
+    border-radius: 5px;
+}

@@ -16,76 +16,84 @@ function createAccount (){
     numero = numero + 1
     // argentaccount(numero) = argent
     // console.log(argentaccount)
+    console.log(argent + 'valeur de argent')
 
-    
-    const div = document.getElementById('accounts')
-    const account = document.createElement('div') // Push la div dans accounts et tout le reste dans la div account
-    account.id = 'account' + numero;
-    div.appendChild(account)
+    if(argent !== null && argent !== 0 && argent <= 1){
 
-    const accountget = document.getElementById('account' + numero)
-    console.log(accountget)
+        const div = document.getElementById('accounts')
+        const account = document.createElement('div') // Push la div dans accounts et tout le reste dans la div account
+        account.id = 'account' + numero;
+        account.className = 'account'
+        div.appendChild(account)
 
-    
+        const accountget = document.getElementById('account' + numero)
+        console.log(accountget)
 
-    const showMoney2 = document.createElement('p')
-    showMoney2.textContent = (argent + ' euros')
-    showMoney2.id = 'laSomme' + numero
-    const name = document.createElement('h3')
-    name.textContent = (compte)
-    name.id = 'accountName'
-    // const h1 = document.createTextNode(compte)
-
-    const buttonAdd = document.createElement('button')
-    buttonAdd.id = 'addMoney';
-    buttonAdd.className = numero;
-    buttonAdd.textContent = ("Ajouter")
-    buttonAdd.addEventListener('click', function() {
-        var clickedButtonAdd = document.getElementById('addMoney')
-        // var accountNumero = clickedButtonAdd.className
-
-        var accountNumero = event.target.className
-        aNum = parseInt(accountNumero)
-        console.log(aNum + 'AccountNumero')
         
-        console.log(accountNumero)
-        console.log("AGGGGG")
 
-        ajouterArgent();
-    });
+        const showMoney2 = document.createElement('p')
+        showMoney2.textContent = (argent + ' euros')
+        showMoney2.id = 'laSomme' + numero
+        const name = document.createElement('h3')
+        name.textContent = (compte)
+        name.id = 'accountName'
+        // const h1 = document.createTextNode(compte)
 
-    const buttonRetirer = document.createElement('button')
-    buttonRetirer.id = 'retirerMoney';
-    buttonRetirer.className = numero;
-    buttonRetirer.textContent = ("Retirer de l'argent")
-    buttonRetirer.addEventListener('click', function() {
-        var accountNumero = event.target.className
-        aNum = parseInt(accountNumero)
-        retirerArgent();
-    });
+        const buttonAdd = document.createElement('button')
+        buttonAdd.id = 'addMoney';
+        buttonAdd.className = numero;
+        buttonAdd.textContent = ("Ajouter")
+        buttonAdd.addEventListener('click', function() {
+            var clickedButtonAdd = document.getElementById('addMoney')
+            var accountNumero = clickedButtonAdd.className
 
-    raisonUl = document.createElement('details')
-    raisonUl.id = 'raisons' + numero;
-    raisonUl.className = 'Suivi'
+            var accountNumero = event.target.className
+            aNum = parseInt(accountNumero)
+            console.log(aNum + 'AccountNumero')
+            
+            console.log(accountNumero)
+            console.log("AGGGGG")
+
+            ajouterArgent();
+        });
+
+        const buttonRetirer = document.createElement('button')
+        buttonRetirer.id = 'retirerMoney';
+        buttonRetirer.className = numero;
+        buttonRetirer.textContent = ("Retirer de l'argent")
+        buttonRetirer.addEventListener('click', function() {
+            var accountNumero = event.target.className
+            aNum = parseInt(accountNumero)
+            retirerArgent();
+        });
+
+        raisonUl = document.createElement('details')
+        raisonUl.id = 'raisons' + numero;
+        raisonUl.className = 'Suivi'
 
 
-    accountget.appendChild(name)
-    accountget.appendChild(showMoney2)
-    accountget.appendChild(raisonUl)
+        accountget.appendChild(name)
+        accountget.appendChild(showMoney2)
+        accountget.appendChild(raisonUl)
 
-    getDetails = document.getElementById("raisons" + numero)
-    createSummary = document.createElement('summary')
-    createSummary.textContent = 'Historique';
-    getDetails.appendChild(createSummary)
+        getDetails = document.getElementById("raisons" + numero)
+        createSummary = document.createElement('summary')
+        createSummary.textContent = 'Historique';
+        getDetails.appendChild(createSummary)
 
 
-    const boutonsbloc = document.createElement('div')
-    boutonsbloc.id = 'buttonsthediv' + numero
-    accountget.appendChild(boutonsbloc)
-    const boutonsBlocDiv = document.getElementById('buttonsthediv' + numero)
+        const boutonsbloc = document.createElement('div')
+        boutonsbloc.id = 'buttonsthediv' + numero
+        accountget.appendChild(boutonsbloc)
+        const boutonsBlocDiv = document.getElementById('buttonsthediv' + numero)
 
-    boutonsBlocDiv.appendChild(buttonAdd)
-    boutonsBlocDiv.appendChild(buttonRetirer)
+        boutonsBlocDiv.appendChild(buttonAdd)
+        boutonsBlocDiv.appendChild(buttonRetirer)
+
+    }else{
+        alert('Veuillez entrer des valeurs valides')
+    }
+    
 }
 
 const boutonadd = document.getElementById('addMoney')
@@ -98,7 +106,7 @@ function ajouterArgent (){
     console.log('fonction d ajout d argent en cours')
     somme = prompt('entrez la somme à ajouter')
     raison = prompt('Quel est la raison')
-    if (!isNaN(somme) || somme !== null) {
+    if (somme !== isNaN && somme !== null && somme !== 0) {
         raisonAjout = raisonAjout + 1;
         argent = parseInt(argent) + parseInt(somme)
         document.getElementById('laSomme' + aNum).innerHTML = argent + ' euros';
@@ -122,14 +130,12 @@ function ajouterArgent (){
     } else {
         alert('Veuillez entrez un nombre valide')
     }
-    
-    console.log(argent)
 }
 function retirerArgent (){
     raisonRetrait = raisonRetrait + 1;
     soustraction = prompt('entrez la somme à soustraire')
     raison = prompt('Quel est la raison')
-    if (!isNaN(soustraction)) {
+    if (soustraction !== isNaN && soustraction !== null && soustraction !== 0) {
         argent = parseInt(argent) - parseInt(soustraction)
         document.getElementById('laSomme' + aNum).innerHTML = argent + ' euros';
 
@@ -153,20 +159,20 @@ function retirerArgent (){
     }
 }
 
-
-
 // ajout du fonctionnement du ajout et retrait. x
 // Transfert d'argent entre compte  
-// Et creation de compte mieux goupillé
+// Et creation de compte mieux goupillé x
 // Meilleur choix des noms de classes, id, fonctions. plus logiques/cohérent.
 // Faire en sorte que boutons soient spécifiques au compte auquel ils sont affiliés. x
 //Stocker toutes les données avec local storage
 // Plutot pour les differentes sommes associés a differents comptes utiliser des objets et tableaux. Surement beaucoup mieux.
-// Ajouter raison d'ajout d'argent et de retrait. Faire apparaitre un historique déroulable pour afficher entrées et sorties avec descriptions.
+// Ajouter raison d'ajout d'argent et de retrait. Faire apparaitre un historique déroulable pour afficher entrées et sorties avec descriptions. x
 
-// quand soustraction d'argent avec champ vide et confirmation la valeur passe a NAN. bien set les conditions pour eviter ca.
 // Problemes possibles si valeur (argent) rentrées avec des espace. exemples 5 000 au lieu de 5000.
 // Si creation de compte sans entrer de valeurs, compte créer mais sans rien. Peaufiner les conditions.
 // dans le processus de creation nom du compte avant valeur. Plus tard possible de modifier les valeurs par un click sur celle-ci.
 
 // Empecher la creation d'un compte, ajout d'une somme et retrait sans valeur entré ou invalide (texte, chiffre avec virgules ou espaces).
+//Si valeur négative également.
+// Si valeur null, nan ou 0 empechement. mais si utilisateur entre sans sans aucune valeur ca fonctionne. si la valeur est du texte aussi.
+//Mauvais ordre d'affichage de l'historique
