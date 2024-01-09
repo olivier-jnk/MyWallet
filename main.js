@@ -2,6 +2,8 @@ let argent = 0;
 let compte = 0;
 let numero = 0;
 let aNum = 0;
+let raisonAjout = 0;
+let raisonRetrait = 0;
 
 // const userAccounts = {};
 // console.log(userAccounts)
@@ -61,8 +63,13 @@ function createAccount (){
         retirerArgent();
     });
 
+    raisonUl = document.createElement('ul')
+    raisonUl.id = 'raisons' + numero;
+
+
     accountget.appendChild(name)
     accountget.appendChild(showMoney2)
+    accountget.appendChild(raisonUl)
 
     const boutonsbloc = document.createElement('div')
     boutonsbloc.id = 'buttonsthediv' + numero
@@ -78,12 +85,31 @@ const boutonsupp = document.getElementById('retirerMoney')
 
 // En fonction du compte faire le transfert vers le bon.
 function ajouterArgent (){
+    
     console.log(argent)
     console.log('fonction d ajout d argent en cours')
     somme = prompt('entrez la somme à ajouter')
+    raison = prompt('Quel est la raison')
     if (!isNaN(somme)) {
+        raisonAjout = raisonAjout + 1;
         argent = parseInt(argent) + parseInt(somme)
         document.getElementById('laSomme' + aNum).innerHTML = argent + ' euros';
+        
+        let raisonsGet = document.getElementById('raisons' + aNum)
+        console.log(aNum)
+        let raisonLi = document.createElement('li')
+        raisonLi.id = "raisonAjout" + aNum + 0 + raisonAjout;
+
+        raisonsGet.appendChild(raisonLi)
+        // raisonLi.textContent = (somme + raison) 
+        liGet = document.getElementById("raisonAjout" + aNum + 0 + raisonAjout)
+        txtAjout = document.createElement('p');
+        txtAjout.textContent = ('+' + somme + ':');
+        raisonAjout = document.createElement('p');
+        raisonAjout.textContent = (raison)
+
+        liGet.appendChild(txtAjout)
+        liGet.appendChild(raisonAjout)
     } else {
         alert('Veuillez entrez un nombre valide')
     }
@@ -91,10 +117,27 @@ function ajouterArgent (){
     console.log(argent)
 }
 function retirerArgent (){
+    raisonRetrait = raisonRetrait + 1;
     soustraction = prompt('entrez la somme à soustraire')
+    raison = prompt('Quel est la raison')
     if (!isNaN(soustraction)) {
         argent = parseInt(argent) - parseInt(soustraction)
         document.getElementById('laSomme' + aNum).innerHTML = argent + ' euros';
+
+        let raisonsGet = document.getElementById('raisons' + aNum)
+        console.log(aNum)
+        let raisonLi = document.createElement('li')
+        raisonLi.id = "raisonRetrait" + aNum + 0 + raisonRetrait;
+
+        raisonsGet.appendChild(raisonLi)
+        liGet = document.getElementById("raisonRetrait" + aNum + 0 + raisonRetrait)
+        txtAjout = document.createElement('p');
+        txtAjout.textContent = ('-' + soustraction + ':');
+        raisonAjout = document.createElement('p');
+        raisonAjout.textContent = (raison)
+
+        liGet.appendChild(txtAjout)
+        liGet.appendChild(raisonAjout)
     } else {
         alert('Veuillez entrez un nombre valide')
     }
@@ -104,9 +147,9 @@ function retirerArgent (){
 
 // ajout du fonctionnement du ajout et retrait. x
 // Transfert d'argent entre compte  
-// Et creation de compte mieux goupillée
+// Et creation de compte mieux goupillé
 // Meilleur choix des noms de classes, id, fonctions. plus logiques/cohérent.
-// Faire en sorte que boutons soient spécifiques au compte auquel ils sont affiliés.
+// Faire en sorte que boutons soient spécifiques au compte auquel ils sont affiliés. x
 //Stocker toutes les données avec local storage
 // Plutot pour les differentes sommes associés a differents comptes utiliser des objets et tableaux. Surement beaucoup mieux.
 // Ajouter raison d'ajout d'argent et de retrait. Faire apparaitre un historique déroulable pour afficher entrées et sorties avec descriptions.
